@@ -23,3 +23,16 @@ output
 
 checkpoints
 ckpts*
+
+# Secret Environment Variables
+.env*
+
+# Amulet User Config
+.amltconfig
+
+# Blob Fuse
+.blobfuse/*.yaml
+!.blobfuse/*.example.yaml
+
+# Pretrained Models
+models
