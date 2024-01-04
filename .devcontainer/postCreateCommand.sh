@@ -22,10 +22,11 @@ echo "conda activate gpt4roi" >> ~/.bashrc
 source /home/vscode/miniconda3/bin/activate
 
 # Create and activate gpt4roi environment
-conda create -y -n gpt4roi python=3.10
+conda create -y -n gpt4roi python=3.9
 conda activate gpt4roi
 
 echo "Installing CUDA..."
+# Even though cuda package install cuda-nvcc, it doesn't pin the same version so we explicitly set both
 conda install -y -c nvidia cuda=11.7 cuda-nvcc=11.7
 
 export CUDA_HOME=/home/vscode/miniconda3/envs/gpt4roi
@@ -37,13 +38,14 @@ pip install setuptools_scm
 pip install --no-cache-dir -e .
 
 # please use conda re-install the torch, pip may loss some runtime lib
-conda install -y pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia
+conda install -y -c nvidia -c pytorch pytorch-cuda=11.7 pytorch=1.10.0 torchvision=0.11.1 torchaudio=0.10.0
 
 pip install ninja
 pip install flash-attn --no-build-isolation
 
 nvcc -V
-python -c "import torch;print(torch.__version__)"
+TORCH_VERSION=$(python -c "import torch;print(torch.__version__)")
+echo "Torch version: $TORCH_VERSION"
 
 MMCV_WITH_OPS=1 pip install -e mmcv-1.4.7
 
