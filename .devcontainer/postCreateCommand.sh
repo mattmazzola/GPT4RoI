@@ -26,7 +26,11 @@ conda create -y -n gpt4roi python=3.10
 conda activate gpt4roi
 
 echo "Installing CUDA..."
-conda install -y -c nvidia cuda-nvcc=11.7
+conda install -y -c nvidia cuda=11.7 cuda-nvcc=11.7
+
+export CUDA_HOME=/home/vscode/miniconda3/envs/gpt4roi
+echo "export CUDA_HOME=$CUDA_HOME" >> ~/.zshrc
+echo "export CUDA_HOME=$CUDA_HOME" >> ~/.bashrc
 
 pip install --upgrade pip
 pip install setuptools_scm
@@ -41,8 +45,6 @@ pip install flash-attn --no-build-isolation
 nvcc -V
 python -c "import torch;print(torch.__version__)"
 
-cd mmcv-1.4.7
-MMCV_WITH_OPS=1 pip install -e .
-cd ..
+MMCV_WITH_OPS=1 pip install -e mmcv-1.4.7
 
 echo "postCreateCommand.sh completed!"
