@@ -32,9 +32,9 @@
     <img src="figs/framework.png" width="70%"> <br>
 </p>
 
-> [**GPT4RoI: Instruction Tuning Large Language Model on Region-of-Interest**](https://arxiv.org/abs/2307.03601)               
+> [**GPT4RoI: Instruction Tuning Large Language Model on Region-of-Interest**](https://arxiv.org/abs/2307.03601)
 > [Shilong Zhang*](https://jshilong.github.io/), [Peize Sun*](https://peizesun.github.io/), [Shoufa Chen*](https://www.shoufachen.com/), Min Xiao, Wenqi Shao ,Wenwei Zhang, Kai Chen, Ping Luo</br>
-> (*Equal Contribution) 
+> (*Equal Contribution)
 
 ### [[Demo](http://139.196.83.164:7000/)]  [[Paper](https://arxiv.org/abs/2307.03601)] [[中文介绍](https://zhuanlan.zhihu.com/p/640283103)]
 
@@ -44,7 +44,7 @@
 
 ## Updates
 
-- [July 25]  [GPT4RoI-7B-delta-V0](https://huggingface.co/shilongz/GPT4RoI-7B-delta-V0) has release ! :fire::fire::fire: You need to combine our delta with the original LLaMA weights follow the [GPT4RoI Weights](https://github.com/jshilong/GPT4RoI/tree/main#weights) section. 
+- [July 25]  [GPT4RoI-7B-delta-V0](https://huggingface.co/shilongz/GPT4RoI-7B-delta-V0) has release ! :fire::fire::fire: You need to combine our delta with the original LLaMA weights follow the [GPT4RoI Weights](https://github.com/jshilong/GPT4RoI/tree/main#weights) section.
 - [July 7]  All training and inference code has been released, you can try demo [here](http://139.196.83.164:7000/) :fire::fire::fire:
 
 
@@ -72,9 +72,9 @@ pip install --upgrade pip  # enable PEP 660 support
 pip install setuptools_scm
 pip install --no-cache-dir  -e .
 # please use conda re-install the torch, pip may loss some runtime lib
-conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia 
+conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia
 ```
-3. Install the `flash-attn` package 
+3. Install the `flash-attn` package
 ```
 pip install ninja
 pip install flash-attn --no-build-isolation
@@ -131,7 +131,7 @@ GPT4RoI
 │   │   ├── vcr1images/
 ```
 ### NOTE
-1. coco_imgs should contains all coco image(you can soft link them to this directory.
+1. coco_imgs should contains all coco image (you can soft link them to this directory).
 2. We use Visual_Genome_Dataset_V1.2, available for download from  [OpenDataLab](https://opendatalab.com/). Ensure to download the  [train.json](https://datarelease.blob.core.windows.net/grit/VG_preprocessed_annotations/train.json), you should create a soft link for all VG images to the directory `vg_all`.
 3. [llava_150k_bbox_pred_results.pkl](https://huggingface.co/shilongz/temp/tree/main) contains the detection predicted results with EVA-02-DET. We appreciate their work.
 
@@ -144,7 +144,7 @@ Due to the licensing restrictions of LLaMA, the delta weights GPT4RoI-7B is prod
 The original LLaMA weights are available for download. Use the following commands:
 ```shell
 git lfs install
-git clone https://huggingface.co/decapoda-research/llama-7b-hf ./llama-7b 
+git clone https://huggingface.co/jeffwan/llama-7b-hf ./llama-7b
 ```
 
 Alternatively, access the [webpage](https://huggingface.co/decapoda-research/llama-7b-hf/tree/main) to download the file.
@@ -162,7 +162,7 @@ You can also directly download the file from this [webpage](https://huggingface.
 Apply the delta weights to the original LLaMA-7B weights. Note that this conversion command requires approximately 30 GB of CPU RAM.
 ```bash
 export PYTHONPATH=`pwd`:$PYTHONPATH
-python3 -m scripts.apply_delta.py \
+python3 -m scripts.apply_delta \
     --base ./llama-7b \
     --target ./GPT4RoI-7B \
     --delta ./GPT4RoI-7B-delta
@@ -177,7 +177,7 @@ Vicuna-v0, an instruction-tuned chatbot, is the base model for this setup. In or
 Ensure to download the following projector weight file: [LLaVA-7b-pretrain-projector-v0-CC3M-595K-original_caption.bin](https://huggingface.co/liuhaotian/LLaVA-Pretrained-Projectors/resolve/main/LLaVA-7b-pretrain-projector-v0-CC3M-595K-original_caption.bin).
 
 Additionally, you have the flexibility to choose from different versions of Vicuna (such as the 13B version or llama v2 chatbot) and the corresponding projector weights from [LLaVA](https://github.com/haotian-liu/LLaVA) to meet your specific requirements effectively.
-`exp/stage1` is the work directory. 
+`exp/stage1` is the work directory.
 ```Shell
 bash train_stage1.sh exp/stage1
 # Resume training in stage1
@@ -190,7 +190,7 @@ bash train_stage1.sh exp/stage1
 # At the beginning of stage2
 bash train_stage2.sh exp/stage2 exp/stage1
 # Resume training in stage2
-# bash train_stage2.sh exp/stage2 
+# bash train_stage2.sh exp/stage2
 ```
 
 
@@ -222,7 +222,7 @@ You should always use `<region1>, <region2>...` to refer the new bounding box in
 If you find GPT4RoI useful for your your research and applications, please cite using this BibTeX:
 ```bibtex
 @misc{zhang2023gpt4roi,
-      title={GPT4RoI: Instruction Tuning Large Language Model on Region-of-Interest}, 
+      title={GPT4RoI: Instruction Tuning Large Language Model on Region-of-Interest},
       author={Shilong Zhang and Peize Sun and Shoufa Chen and Min Xiao and Wenqi Shao and Wenwei Zhang and Kai Chen and Ping Luo},
       year={2023},
       eprint={2307.03601},
