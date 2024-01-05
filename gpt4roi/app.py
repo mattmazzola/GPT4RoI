@@ -398,7 +398,7 @@ if __name__ == '__main__':
     parser.add_argument('--https', action='store_true')
     parser.add_argument('--model', type=str, default='./GPT4RoI-7B')
     args = parser.parse_args()
-    
+
     bot = ConversationBot(model_name=args.model)
     with gr.Blocks(theme=ThemeBase.Base(), css=css) as demo:
         state = gr.State([])
@@ -406,7 +406,7 @@ if __name__ == '__main__':
         with gr.Row(visible=True) as user_interface:
 
             with gr.Column(elem_id='Image', scale=0.5) as img_part:
-                with gr.Tab('Image(Please draw the boxes here👇👇👇)', elem_id='image_tab') as img_tab:
+                with gr.Tab('Image (Please draw the boxes here) 👇', elem_id='image_tab') as img_tab:
                     click_img = ImageSketcher(type='pil', interactive=True, brush_radius=15,
                                               elem_id='image_upload').style(height=360)
                     with gr.Row() as img_btn:
@@ -424,7 +424,7 @@ if __name__ == '__main__':
                 lambda: gr.update(visible=False), [], [txt]).then(
                 bot.run, [txt, click_img, chatbot, state, history_cache], [click_img, chatbot, state, history_cache]).then(
                 lambda: gr.update(value=''), None, [txt, ]).then(
-                 lambda: gr.update(visible=True), [], [txt]).then(
+                lambda: gr.update(visible=True), [], [txt]).then(
                 lambda: gr.update(visible=True), [], [img_btn]).then(
                 lambda: gr.update(visible=True), [], [chat_part])
 
