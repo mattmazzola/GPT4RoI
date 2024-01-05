@@ -39,3 +39,12 @@ ckpts*
 
 # Pretrained Models
 models
+llama-7b
+GPT4RoI-7B-delta
+GPT4RoI-7B
+
+# Gradio Box
+gradio-dev
+
+# Pnpm
+.pnpm-store
