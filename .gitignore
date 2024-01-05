@@ -30,6 +30,9 @@ ckpts*
 # Amulet User Config
 .amltconfig
 
+# Devcontainer
+!.devcontainer/*
+
 # Blob Fuse
 .blobfuse/*.yaml
 !.blobfuse/*.example.yaml
